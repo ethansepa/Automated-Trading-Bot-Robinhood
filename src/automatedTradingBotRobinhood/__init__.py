@@ -1,2 +1,0 @@
-from .bots.automated_trading_bot import RollingAvgAndTrendBot
-from .models.random_forest_classifier_model import RollingAvgAndTrendModel

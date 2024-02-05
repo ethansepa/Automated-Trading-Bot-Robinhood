@@ -4,7 +4,7 @@ import yfinance as yf # calls Yahoo Finance api to download daily stock and inde
 
 import pandas as pd
 
-class RollingAvgAndTrendModel:
+class RollingAvgTrendModel:
     def __init__(self, ticker="^GSPC"):
         # Create model
         self.model = RandomForestClassifier(n_estimators=200, min_samples_split=50, random_state=1)

@@ -3,15 +3,15 @@ import yfinance as yf
 
 import pyotp
 
-from ..models.random_forest_classifier_model import RollingAvgAndTrendModel
+from ..models.rolling_avg_trend_model import RollingAvgTrendModel
 
-class RollingAvgAndTrendBot:
+class RollingAvgTrendBot:
     def __init__(self):
         robinhood.login('email@email.com','password')
         totp  = pyotp.TOTP("My2factorAppHere").now()
 
     def check_model(self, ticker="^GSPC"):
-        model = RollingAvgAndTrendModel(ticker)
+        model = RollingAvgTrendModel(ticker)
         prediction = model.predict()
         if prediction == "BUY" and self.__have_funds__():
             #TODO: send buy order
