@@ -7,7 +7,7 @@ from ..models.rolling_avg_trend_model import RollingAvgTrendModel
 
 class RollingAvgTrendBot:
     def __init__(self):
-        robinhood.login('email@email.com','password')
+        robinhood.login('ethanmsepa@gmail.com','Charger$19')
         totp  = pyotp.TOTP("My2factorAppHere").now()
 
     def check_model(self, ticker="^GSPC"):
@@ -25,7 +25,13 @@ class RollingAvgTrendBot:
         return True
     
     def __is_holding__(self, ticker="^GSPC"):
-        return True
+        holdings = robinhood.account.build_holdings()
+        return ticker in holdings
+    
+    def get_holding_value(self, ticker="^GSPC"):
+        if not self.__is_holding__(ticker): return 0
+        holdings = robinhood.account.build_holdings()
+        return holdings[ticker]['equity']
     
     def logout():
         robinhood.logout()
