@@ -1,5 +1,6 @@
 import robin_stocks.robinhood as robinhood #calls robinhood api
 import yfinance as yf
+from login import LoginInfo
 
 import pyotp
 
@@ -7,7 +8,12 @@ from ..models.rolling_avg_trend_model import RollingAvgTrendModel
 
 class RollingAvgTrendBot:
     def __init__(self):
-        robinhood.login('ethanmsepa@gmail.com','Charger$19')
+        login_info = LoginInfo()
+        username = login_info.username
+        password = login_info.password
+        print(username)
+        print(password)
+        robinhood.login(username, password)
         totp  = pyotp.TOTP("My2factorAppHere").now()
 
     def check_model(self, ticker="^GSPC"):

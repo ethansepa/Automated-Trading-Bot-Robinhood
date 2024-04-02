@@ -1,6 +1,6 @@
 import robin_stocks.robinhood as rs
 
-from automatedTradingBotRobinhoods.logic.src.bots.rolling_avg_trend_bot import RollingAvgTrendBot
+from automatedTradingBotRobinhood.src.bots.rolling_avg_trend_bot import RollingAvgTrendBot
 
 # Make predictions on top 3 stocks
 rolling_avg_trend_trade_bot = RollingAvgTrendBot()
@@ -13,6 +13,9 @@ for stocks in top_100[0:4]:
 print("S&P: ")
 print(rolling_avg_trend_trade_bot.get_holding_value())
 print("SOFI: ")
-print(rolling_avg_trend_trade_bot.get_holding_value('SOFI'))
+print(rolling_avg_trend_trade_bot.get_holding_value("SOFI"))
 print("APPLE: ")
-print(rolling_avg_trend_trade_bot.get_holding_value('AAPL'))
+print(rolling_avg_trend_trade_bot.get_holding_value("AAPL"))
+
+print("SOFI Prediction: ")
+print(rolling_avg_trend_trade_bot.check_model(ticker="SOFI"))

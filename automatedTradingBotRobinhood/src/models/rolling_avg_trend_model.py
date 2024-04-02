@@ -70,8 +70,8 @@ class RollingAvgTrendModel:
         print(pred_prob)
         if pred_prob >= 0.55:
             return "BUY"
-        elif pred_prob < 0.55:
-            return "CLOSE"
+        elif pred_prob < 0.45:
+            return "SELL"
         return "HOLD"
     
     def predict(self):
