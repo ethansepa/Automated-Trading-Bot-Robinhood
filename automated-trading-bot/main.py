@@ -1,6 +1,6 @@
 import robin_stocks.robinhood as rs
 
-from automatedTradingBotRobinhood.src.bots.rolling_avg_trend_bot import RollingAvgTrendBot
+from src.ml_model.bots.rolling_avg_trend_bot import RollingAvgTrendBot
 
 # Make predictions on top 3 stocks
 rolling_avg_trend_trade_bot = RollingAvgTrendBot()
