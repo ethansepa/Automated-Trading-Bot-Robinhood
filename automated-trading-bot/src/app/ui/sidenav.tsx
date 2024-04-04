@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { PowerIcon } from "@heroicons/react/24/outline";
-import TrdrLogo from "@/app/ui/trdr_logo";
+import TrdrLogo from "@/app/ui/trdr-logo";
 
 export default function SideNav() {
   return (
