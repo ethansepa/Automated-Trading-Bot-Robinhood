@@ -8,8 +8,19 @@ import {
 import { ArrowRightIcon } from "@heroicons/react/20/solid";
 import { Button } from "@/app/ui/button";
 import { useFormState, useFormStatus } from "react-dom";
+import { useState } from "react";
 
 export default function LoginForm() {
+  const [form, setForm] = useState({
+    username: "",
+    password: "",
+  });
+
+  function handleClick() {
+    console.log(form.username);
+    console.log(form.password);
+  }
+
   return (
     <form className="space-y-3">
       <div className="flex-1 rounded-lg bg-gray-50 px-6 pb-4 pt-8">
@@ -28,6 +39,13 @@ export default function LoginForm() {
                 id="Robinhood Username"
                 type="Robinhood Username"
                 name="Robinhood Username"
+                value={form.username}
+                onChange={(e) =>
+                  setForm({
+                    ...form,
+                    username: e.target.value,
+                  })
+                }
                 placeholder="Enter your username"
                 required
               />
@@ -47,6 +65,13 @@ export default function LoginForm() {
                 id="Robinhood Password"
                 type="Robinhood Password"
                 name="Robinhood Password"
+                value={form.password}
+                onChange={(e) =>
+                  setForm({
+                    ...form,
+                    password: e.target.value,
+                  })
+                }
                 placeholder="Enter password"
                 required
                 minLength={6}
@@ -55,18 +80,10 @@ export default function LoginForm() {
             </div>
           </div>
         </div>
-        <LoginButton />
+        <Button className="mt-4 w-full" onClick={handleClick}>
+          Log in <ArrowRightIcon className="ml-auto h-5 w-5 text-gray-50" />
+        </Button>
       </div>
     </form>
-  );
-}
-
-function LoginButton() {
-  const { pending } = useFormStatus();
-
-  return (
-    <Button className="mt-4 w-full" aria-disabled={pending}>
-      Log in <ArrowRightIcon className="ml-auto h-5 w-5 text-gray-50" />
-    </Button>
   );
 }
