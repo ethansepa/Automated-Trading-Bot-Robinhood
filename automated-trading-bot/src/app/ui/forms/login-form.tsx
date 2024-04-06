@@ -9,6 +9,7 @@ import { ArrowRightIcon } from "@heroicons/react/20/solid";
 import { Button } from "@/app/ui/button";
 import { useFormState, useFormStatus } from "react-dom";
 import { useState } from "react";
+import { boolean } from "zod";
 
 export default function LoginForm() {
   const [form, setForm] = useState({
@@ -16,9 +17,28 @@ export default function LoginForm() {
     password: "",
   });
 
+  const [error, setError] = useState("");
+
   function handleClick() {
-    console.log(form.username);
-    console.log(form.password);
+    const requestOptions = {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        username: form.username,
+        password: form.password,
+      }),
+    };
+    fetch("/api/login", requestOptions)
+      .then((respose) => {
+        if (respose.ok) {
+          //redirect to dashboard
+        } else {
+          setError("Invalid login credentials.");
+        }
+      })
+      .catch((error) => {
+        console.log(error);
+      });
   }
 
   return (
