@@ -28,10 +28,10 @@ export default function LoginForm() {
         password: form.password,
       }),
     };
-    fetch("/api/login", requestOptions)
+    fetch("http://127.0.0.1:8000/api/login", requestOptions)
       .then((respose) => {
         if (respose.ok) {
-          //redirect to dashboard
+          console.log("REDIRECT");  //redirect to dashboard
         } else {
           setError("Invalid login credentials.");
         }
