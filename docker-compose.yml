@@ -10,3 +10,13 @@ services:
     build: ./backend
     ports:
       - '8000:8000'
+    depends_on:
+      - pgdb
+  pgdb:
+    image: postgres
+    container_name: pgdb
+    env_file: .env
+    environment:
+      - POSTGRES_DB=tradingbotdb
+      - POSTGRES_USER=${POSTGRES_USER}
+      - POSTGRES_PASSWORD=${POSTGRES_PASSWORD}
