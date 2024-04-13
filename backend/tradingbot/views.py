@@ -1,6 +1,6 @@
 from rest_framework.response import Response
 from rest_framework.views import APIView
-from rest_framework import status
+from rest_framework import generics, status
 
 from .serializers import TraderSerializer
 from .models import Trader
@@ -21,7 +21,7 @@ class Login(APIView):
             login = robinhood.login(username, password)
             #robinhood.authentication.logout()
             print(login["detail"])
-            if login["detail"] is not "":
+            if login["detail"] != "":
                 bot = RollingAvgTrendBot()
                 print(bot.get_holding_value("SOFI"))
                 robinhood.logout()
@@ -38,4 +38,6 @@ class Login(APIView):
         return Response({'Bad Request': 'Invalid data...'}, 
                         status=status.HTTP_400_BAD_REQUEST)
     
-        
+class Trader(generics.ListAPIView):
+    queryset = Trader.objects.all()
+    serializer_class = TraderSerializer
