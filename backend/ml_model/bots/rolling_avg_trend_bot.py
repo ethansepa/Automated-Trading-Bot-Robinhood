@@ -1,15 +1,14 @@
 import robin_stocks.robinhood as robinhood #calls robinhood api
 import yfinance as yf
-from ..utils.authorization import Authorization
 
 import pyotp
 
 from ..models.rolling_avg_trend_model import RollingAvgTrendModel
 
 class RollingAvgTrendBot:
-    def __init__(self):
-        Authorization.login()
-        totp  = pyotp.TOTP("My2factorAppHere").now()
+    #def __init__(self):
+        #Authorization.login()
+        #totp  = pyotp.TOTP("My2factorAppHere").now()
 
     def check_model(self, ticker="^GSPC"):
         model = RollingAvgTrendModel(ticker)

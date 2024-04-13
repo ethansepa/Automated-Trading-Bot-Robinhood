@@ -28,7 +28,7 @@ export default function LoginForm() {
         password: form.password,
       }),
     };
-    fetch("http://127.0.0.1:8000/api/login", requestOptions)
+    fetch("http://127.0.0.1:8000/tb/", requestOptions)
       .then((respose) => {
         if (respose.ok) {
           console.log("REDIRECT");  //redirect to dashboard
