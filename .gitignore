@@ -1,2 +1,5 @@
 # Environment Variables
 .env
+
+# pycache
+backend/backend/ml_model/bots/__pycache__
