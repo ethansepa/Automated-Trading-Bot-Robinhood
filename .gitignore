@@ -2,4 +2,4 @@
 .env
 
 # pycache
-backend/backend/ml_model/bots/__pycache__
+backend/ml_model/bots/__pycache__
