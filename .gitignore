@@ -5,7 +5,7 @@
 intitialize.sh
 
 # pycache
-*/__pycache__/
+__pycache__/
 
 # Login Credentials
-*/login.py
+login.py

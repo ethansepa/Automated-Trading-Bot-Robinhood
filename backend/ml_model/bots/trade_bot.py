@@ -1,47 +1,29 @@
-import robin_stocks.robinhood as robinhood #calls robinhood api
 import yfinance as yf
 import pyotp
 
-from backend.ml_model.utilities.login import RobinhoodCredentials, OrderType
+from backend.ml_model.utilities.order_types import OrderType
 
 
     
 class TradeBot:
     def __init__(self, model):
-        """Logs user into their Robinhood account."""
-
-        robinhood_credentials = RobinhoodCredentials()
-        totp = None
-
-        if robinhood_credentials.mfa_code == "":
-            print(
-                "WARNING: MFA code is not supplied. Multi-factor authentication will not be attempted. If your "
-                "Robinhood account uses MFA to log in, this will fail and may lock you out of your accounts for "
-                "some period of time."
-            )
-
-        else:
-            totp = pyotp.TOTP(robinhood_credentials.mfa_code).now()
-
-        robinhood.login(robinhood_credentials.user, robinhood_credentials.password, mfa_code=totp)
         self.model = model
 
-    
-
-    def robinhood_logout(self):
-        """Logs user out of their Robinhood account."""
-
-        robinhood.logout()
-
-    def trade(self, amount_in_dollars, ticker="^GSPC"):
-        prediction = self.model.predict()
-        if prediction == OrderType.Buy and self.has_sufficient_funds_available(amount_in_dollars):
+    def trade(self, amount_in_dollars=0, ticker="^GSPC"):
+        prediction = self.model.make_order_recommendation()
+        if prediction == OrderType.BUY_RECOMMENDATION and self.has_sufficient_funds_available(amount_in_dollars):
             #TODO: send buy order
             return "BUY"
-        elif prediction == OrderType.SELL and self.has_sufficient_equity(ticker):
+        elif prediction == OrderType.SELL_RECOMMENDATION and self.has_sufficient_equity(ticker):
             #TODO: send sell order
             return "SELL"
         return "HOLD"
+    
+    def get_current_cash_position():
+        return 10
+    
+    def get_equity_in_position(ticker):
+        return 10
 
     def has_sufficient_funds_available(self, amount_in_dollars):
         """
