@@ -1,5 +1,11 @@
 # Environment Variables
 .env
 
+# Initialize Script
+intitialize.sh
+
 # pycache
-backend/ml_model/bots/__pycache__/
+*/__pycache__/
+
+# Login Credentials
+*/login.py
